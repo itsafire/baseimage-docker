@@ -13,10 +13,8 @@ export INITRD=no
 mkdir -p /etc/container_environment
 echo -n no > /etc/container_environment/INITRD
 
-## Enable Ubuntu Universe and Multiverse.
-sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
-sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
-apt-get update
+## enable wheezy backports
+echo "deb http://ftp.us.debian.org/debian wheezy-backports main" >>/etc/apt/sources.list
 
 ## Fix some issues with APT packages.
 ## See https://github.com/dotcloud/docker/issues/1024
@@ -46,5 +44,5 @@ $minimal_apt_get_install software-properties-common
 apt-get dist-upgrade -y --no-install-recommends
 
 ## Fix locale.
-$minimal_apt_get_install language-pack-en
+$minimal_apt_get_install locales
 locale-gen en_US

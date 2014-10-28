@@ -1,8 +1,9 @@
-FROM debian:wheezy
+FROM debian:jessie
 MAINTAINER Phusion <info@phusion.nl>
 
 ENV HOME /root
 RUN mkdir /build
+RUN touch /etc/inittab
 ADD . /build
 
 RUN /build/prepare.sh && \

@@ -1,9 +1,12 @@
-NAME = phusion/baseimage
+NAME = nawork/phusion-baseimage
 VERSION = 0.9.15
 
-.PHONY: all build test tag_latest release ssh
+.PHONY: all build build_jessie test tag_latest release ssh
 
-all: build
+all: build build_jessie
+
+build_jessie:
+	./dockerfeed -d image/Dockerfile.jessie image | docker build -t $(NAME)-jessie:$(VERSION) --rm -
 
 build:
 	docker build -t $(NAME):$(VERSION) --rm image
