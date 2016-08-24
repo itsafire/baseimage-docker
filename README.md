@@ -1,12 +1,14 @@
-# A minimal Ubuntu base image modified for Docker-friendliness
+# A minimal Debian base image modified for Docker-friendliness based upon phusion/baseimage-docker
 
-Baseimage-docker is a special [Docker](http://www.docker.io) image that is configured for correct use within Docker containers. It is Ubuntu, plus:
+Baseimage-docker is a special [Docker](http://www.docker.io) image that is configured for correct use within Docker containers. It is Debian wheezy/jessie, plus:
 
  * Modifications for Docker-friendliness.
  * Workarounds for [some Docker bugs](#workaroud_modifying_etc_hosts).
  * Useful administration tools.
 
 You can use it as a base for your own Docker images.
+
+### Blow you see the original README content from phusion.
 
 Baseimage-docker is available for pulling from [the Docker registry](https://index.docker.io/u/phusion/baseimage/)!
 
