@@ -14,7 +14,7 @@ mkdir -p /etc/container_environment
 echo -n no > /etc/container_environment/INITRD
 
 ## enable wheezy backports
-echo "deb http://ftp.us.debian.org/debian wheezy-backports main" >>/etc/apt/sources.list
+## echo "deb http://ftp.us.debian.org/debian wheezy-backports main" >>/etc/apt/sources.list
 
 ## Fix some issues with APT packages.
 ## See https://github.com/dotcloud/docker/issues/1024
