@@ -8,6 +8,9 @@ all: build build_jessie
 build_jessie:
 	./dockerfeed -d image/Dockerfile.jessie image | docker build -t $(NAME)-jessie:$(VERSION) --rm -
 
+build_stretch:
+	./dockerfeed -d image/Dockerfile.stretch image | docker build -t $(NAME)-stretch:$(VERSION) --rm -
+
 build:
 	docker build -t $(NAME)-wheezy:$(VERSION) --rm image
 
@@ -19,6 +22,9 @@ tag_latest:
 
 tag_latest_jessie:
 	docker tag $(NAME)-jessie:$(VERSION) $(NAME)-jessie:latest
+
+tag_latest_stretch:
+	docker tag $(NAME)-stretch:$(VERSION) $(NAME)-stretch:latest
 
 release: test tag_latest
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
