@@ -6,10 +6,10 @@ VERSION = 0.9.15
 all: build build_jessie
 
 build_jessie:
-	./dockerfeed -d image/Dockerfile.jessie image | docker build -t $(NAME)-jessie:$(VERSION) --rm -
+	docker build -f image/Dockerfile.jessie -t $(NAME)-jessie:$(VERSION) --rm image
 
 build_stretch:
-	./dockerfeed -d image/Dockerfile.stretch image | docker build -t $(NAME)-stretch:$(VERSION) --rm -
+	docker build -f image/Dockerfile.stretch -t $(NAME)-stretch:$(VERSION) --rm image
 
 build:
 	docker build -t $(NAME)-wheezy:$(VERSION) --rm image
