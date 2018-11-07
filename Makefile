@@ -11,6 +11,9 @@ build_jessie:
 build_stretch:
 	docker build -f image/Dockerfile.stretch -t $(NAME)-stretch:$(VERSION) --rm image
 
+build_buster:
+	docker build -f image/Dockerfile.buster -t $(NAME)-buster:$(VERSION) --rm image
+
 build:
 	docker build -t $(NAME)-wheezy:$(VERSION) --rm image
 
@@ -25,6 +28,9 @@ tag_latest_jessie:
 
 tag_latest_stretch:
 	docker tag $(NAME)-stretch:$(VERSION) $(NAME)-stretch:latest
+
+tag_latest_buster:
+	docker tag $(NAME)-buster:$(VERSION) $(NAME)-buster:latest
 
 release: test tag_latest
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
