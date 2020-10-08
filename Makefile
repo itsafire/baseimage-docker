@@ -14,6 +14,9 @@ build_stretch:
 build_buster:
 	docker build -f image/Dockerfile.buster -t $(NAME)-buster:$(VERSION) --rm image
 
+build_bullseye:
+	docker build -f image/Dockerfile.bullseye -t $(NAME)-bullseye:$(VERSION) --rm image
+
 build:
 	docker build -t $(NAME)-wheezy:$(VERSION) --rm image
 
@@ -31,6 +34,9 @@ tag_latest_stretch:
 
 tag_latest_buster:
 	docker tag $(NAME)-buster:$(VERSION) $(NAME)-buster:latest
+
+tag_latest_bullseye:
+	docker tag $(NAME)-bullseye:$(VERSION) $(NAME)-bullseye:latest
 
 release: test tag_latest
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
